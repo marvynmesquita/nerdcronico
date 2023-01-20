@@ -1,0 +1,105 @@
+//https://codepen.io/artyom-ivanov/pen/bGdOvRM (source code)
+main {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: radial-gradient(circle, rgb(41,34,84) 0%, rgb(24,7,39) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .plane {
+    z-index: 20;
+    height: 30%;
+    width: 100%;
+    bottom: 0;
+    position: absolute;
+    background: rgb(24,7,39);
+    overflow: hidden;
+    border-top: 2px solid #FE50B1;
+    box-shadow: 0 0 150px -60px #FE50B1;
+    background: linear-gradient(0deg, rgb(24,7,39) 60%, #4E0646 100%);
+    .vlines {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      .line{
+        box-shadow: 0 0 5px #FF91CF;
+      }
+      .left {
+        width: 50%;
+        height: 100%;
+        position: absolute;
+        border-right: 1px solid #FE50B1;
+        .line {
+          right: 0%;
+          width: 2px;
+          height: 100%;
+          position: absolute;
+          background: #FE50B1;
+          @for $i from 1 through 5 {
+            &:nth-child(#{$i}) {
+              right: 12% * $i;  
+              transform-origin: 100% 0%;
+              transform: skewX(-35deg - 10deg * $i);
+            }
+          }
+        }
+      }
+      .right {
+        width: 50%;
+        height: 100%;
+        right: 0;
+        position: absolute;
+        border-left: 1px solid #FE50B1;
+        .line {
+          right: 0%;
+          width: 2px;
+          height: 100%;
+          position: absolute;
+          background: #FE50B1;
+          @for $i from 1 through 5 {
+            &:nth-child(#{$i}) {
+              left: 12% * $i;  
+              transform-origin: 100% 0%;
+              transform: skewX(35deg + 10deg * $i);
+            }
+          }
+        }
+      }
+     }
+    .lines {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      .line {
+        width: 100%;
+        height: 2px;
+        position: absolute;
+        bottom: 90%;
+        background: #FE50B1;
+        animation: linesSlide 3s ease-in infinite both;
+        box-shadow: 0 0 5px #FF91CF;
+        @for $i from 1 through 10 {
+          &:nth-child(#{$i}) {
+            animation-delay: .3s * $i;
+          }
+        }
+      }
+    }
+  }
+  
+  
+  @keyframes linesSlide {
+    from {
+      bottom: 100%;
+      height: 2px;
+    }
+    to {
+      bottom: -10px;
+      height: 10px;
+    }
+  }
